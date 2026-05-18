@@ -1,65 +1,67 @@
 # Automação de API - ServeRest
 
-Projeto de automação de testes de API utilizando a plataforma ServeRest, com foco na validação de fluxos reais de autenticação e manipulação de dados.
+Projeto de automação de testes de API utilizando a plataforma ServeRest, com foco na validação de autenticação, manipulação de dados e integração contínua.
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
-Validar operações essenciais de backend:
+Validar operações essenciais de backend através de testes automatizados:
 
 - Consulta de produtos
 - Autenticação de usuário
-- Cadastro de produto autenticado
+- Cadastro de produtos autenticados
 
 ---
 
-## 🛠️ Stack
+## Tecnologias Utilizadas
 
-- Postman  
-- Newman  
-- htmlextra (relatórios)
-
----
-
-## 🧪 Cenários Automatizados
-
-### 🔍 Consulta de produtos
-- Requisição GET para listagem
-- Validação de status e retorno da API
+- Postman
+- Newman
+- Newman Reporter HTML Extra
+- GitHub Actions
 
 ---
 
-### 🔐 Autenticação
-- Login com usuário válido
+## Cenários Automatizados
+
+### Consulta de Produtos
+- Requisição GET para listagem de produtos
+- Validação de status code
+- Validação da estrutura de resposta da API
+
+### Autenticação
+- Login com credenciais válidas
 - Captura automática do token JWT
-- Armazenamento em variável de ambiente
+- Armazenamento do token em variável de ambiente
+
+### Cadastro de Produto
+- Requisição POST autenticada via Bearer Token
+- Utilização dinâmica do token obtido no login
+- Validação da criação do recurso
 
 ---
 
-### ➕ Cadastro de produto
-- Requisição POST autenticada (Bearer Token)
-- Uso dinâmico do token obtido no login
-- Validação de criação do recurso
+## Integração Contínua (CI)
+
+O projeto possui pipeline automatizada utilizando GitHub Actions.
+
+A cada novo push ou pull request na branch `main`, o fluxo executa automaticamente:
+
+1. Configuração do ambiente Ubuntu
+2. Instalação do Node.js
+3. Instalação das dependências do projeto
+4. Execução da suíte de testes automatizados
+5. Geração do relatório HTML
+6. Publicação do relatório como artifact no GitHub Actions
 
 ---
 
-## ⚙️ Integração Contínua (CI)
-Este projeto conta com uma esteira de CI/CD configurada através do **GitHub Actions**. 
-Toda vez que um novo código é enviado (Push/Pull Request) para a branch `main`, o pipeline realiza as seguintes etapas de forma automatizada:
-1. Prepara o ambiente Ubuntu na nuvem.
-2. Instala o Node.js e as dependências (Newman e htmlextra).
-3. Executa a suíte de testes da API.
-4. Gera e armazena o relatório `.html` como um *Artifact* disponível para download na aba Actions.
+## Estrutura do Projeto
 
-## ▶️ Execução dos testes
-
-1. Clone este repositório na sua máquina:
-`git clone https://github.com/bruno-nvs/automacao-api-serverest.git`
-
-2. Instale o Newman e o gerador de relatórios (requer Node.js):
-`npm install -g newman newman-reporter-htmlextra`
-
-3. Execute a automação:
-```bash
-newman run serverest.json -r htmlextra
+```txt
+.
+├── serverest.json
+├── README.md
+└── .github
+    └── workflows
