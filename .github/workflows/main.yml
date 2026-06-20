@@ -28,7 +28,7 @@ jobs:
       run: newman run serverest.json --insecure -r htmlextra
 
     - name: Salvar o Relatório HTML como artefato
-      # Isso permite que você baixe o relatório direto do GitHub depois
+      # Isso permite que você baixe o relatório direto do GitHub depois!
       uses: actions/upload-artifact@v4
       with:
         name: relatorio-de-testes
